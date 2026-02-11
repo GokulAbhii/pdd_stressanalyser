@@ -17,7 +17,7 @@ app = FastAPI(
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,13 +28,7 @@ app.include_router(auth.router)
 app.include_router(stress.router)
 app.include_router(reports.router)
 
-@app.get("/")
-def read_root():
-    return {
-        "message": "AI Stress Detection API",
-        "version": "1.0.0",
-        "status": "online"
-    }
+
 
 @app.get("/health")
 def health_check():
@@ -86,3 +80,18 @@ async def websocket_analysis(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+# Mount static files at the end to avoid capturing API routes
+from fastapi.staticfiles import StaticFiles
+import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    base_dir = sys._MEIPASS
+    static_dir = os.path.join(base_dir, 'static')
+else:
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    static_dir = os.path.join(base_dir, '../../web/out')
+
+if os.path.exists(static_dir):
+    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")

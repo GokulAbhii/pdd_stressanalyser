@@ -133,7 +133,7 @@ const FaceTracking = forwardRef(({ onStressUpdate }, ref) => {
             }
 
             // Connect to WebSocket
-            wsRef.current = new WebSocket('ws://localhost:8000/ws/analysis')
+            wsRef.current = new WebSocket('ws://127.0.0.1:8000/ws/analysis')
 
             wsRef.current.onopen = () => {
                 console.log('WebSocket connected')

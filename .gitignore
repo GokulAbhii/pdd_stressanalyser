@@ -42,3 +42,13 @@ Thumbs.db
 
 # ML Models (keep the trained model)
 # app/ml/stress_model.json
+
+# PyInstaller
+*.spec
+
+# Windows
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs
+logs/

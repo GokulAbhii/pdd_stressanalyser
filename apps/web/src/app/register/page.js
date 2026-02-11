@@ -23,11 +23,30 @@ export default function RegisterPage() {
         setError('')
 
         try {
-            // Placeholder for actual register logic
-            await new Promise(resolve => setTimeout(resolve, 1000))
+            const response = await fetch('http://127.0.0.1:8000/api/v1/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    password: formData.password
+                })
+            })
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.detail || 'Registration failed')
+            }
+
+            // Save to localStorage
+            localStorage.setItem('token', data.access_token)
+            localStorage.setItem('user', JSON.stringify(data.user))
+
             router.push('/dashboard')
         } catch (err) {
-            setError('Registration failed')
+            console.error(err)
+            setError(err.message || 'Registration failed')
         } finally {
             setLoading(false)
         }

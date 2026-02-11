@@ -30,7 +30,7 @@ function ReportContent() {
         try {
             // Fetch session data first
             const sessionResponse = await fetch(
-                `http://localhost:8000/api/v1/stress/session/${sessionId}`
+                `http://127.0.0.1:8000/api/v1/stress/session/${sessionId}`
             )
 
             if (sessionResponse.ok) {
@@ -40,14 +40,14 @@ function ReportContent() {
 
             // Generate report if not exists
             const generateResponse = await fetch(
-                `http://localhost:8000/api/v1/reports/generate/${sessionId}`,
+                `http://127.0.0.1:8000/api/v1/reports/generate/${sessionId}`,
                 { method: 'POST' }
             )
 
             if (!generateResponse.ok) {
                 // Try to fetch existing report
                 const fetchResponse = await fetch(
-                    `http://localhost:8000/api/v1/reports/session/${sessionId}/report`
+                    `http://127.0.0.1:8000/api/v1/reports/session/${sessionId}/report`
                 )
 
                 if (!fetchResponse.ok) {
@@ -71,7 +71,7 @@ function ReportContent() {
     const downloadPDF = async () => {
         try {
             const response = await fetch(
-                `http://localhost:8000/api/v1/reports/${report.id}/pdf`
+                `http://127.0.0.1:8000/api/v1/reports/${report.id}/pdf`
             )
             const blob = await response.blob()
             const url = window.URL.createObjectURL(blob)

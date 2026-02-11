@@ -36,7 +36,7 @@ export default function DashboardPage() {
 
     const fetchSessions = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:8000/api/v1/stress/user/${userId}/history`)
+            const response = await fetch(`http://127.0.0.1:8000/api/v1/stress/user/${userId}/history`)
             if (response.ok) {
                 const data = await response.json()
                 // Only update if length changed to prevent unnecessary re-renders causing jitter, 
