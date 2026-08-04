@@ -6,6 +6,8 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 permissions:
@@ -13,6 +15,7 @@ permissions:
 
 jobs:
   security-audit:
+    name: Backend Security & Vulnerability Audit
     runs-on: ubuntu-latest
     steps:
       - name: Stage 1 - Checkout Code

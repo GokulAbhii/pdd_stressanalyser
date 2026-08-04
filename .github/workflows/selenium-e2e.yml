@@ -6,6 +6,8 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 permissions:
@@ -13,6 +15,7 @@ permissions:
 
 jobs:
   selenium-e2e-tests:
+    name: Selenium E2E Tests
     runs-on: ubuntu-latest
     steps:
       - name: Stage 1 - Repository Checkout
