@@ -1,4 +1,5 @@
 name: k6 Load Testing (50 VUs x 60s)
+run-name: k6 Load Testing (50 VUs x 60s)
 
 on:
   push:

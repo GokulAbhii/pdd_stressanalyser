@@ -1,4 +1,5 @@
 name: Android Appium E2E Tests
+run-name: Android Appium E2E Tests
 
 on:
   push:
