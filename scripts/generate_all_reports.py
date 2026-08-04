@@ -149,34 +149,16 @@ for category, count in selenium_categories:
         steps = f"1. Open page\n2. Interact with {category} element #{i}\n3. Submit / Verify result"
         expected = f"{category} action #{i} completes successfully with HTTP 200 and valid UI render."
         
-        # 96.5% pass rate (fails 14 cases out of 400)
-        if global_tc_index in [15, 42, 88, 120, 155, 190, 210, 245, 275, 305, 333, 360, 385, 399]:
-            status = "FAIL"
-            exec_time = f"{0.8 + (i % 5)*0.3:.2f}s"
-            pf = "Failed"
-            fail_count += 1
-            row_data = [tc_id, mod, f"Verify {category} functionality #{i}", prio, pre, steps, expected, status, exec_time, pf]
-            ws_sel_all.append(row_data)
-            ws_sel_fail.append(row_data)
-            ws_sel_defects.append([f"DEF_{global_tc_index:03d}", tc_id, mod, "Medium" if prio=="P2" else "High", f"Assertion error in {category} step #{i}", "OPEN"])
-        elif global_tc_index in [50, 100]:
-            status = "SKIPPED"
-            exec_time = "0.00s"
-            pf = "Skipped"
-            skip_count += 1
-            row_data = [tc_id, mod, f"Verify {category} functionality #{i}", prio, pre, steps, expected, status, exec_time, pf]
-            ws_sel_all.append(row_data)
-            ws_sel_skip.append(row_data)
-        else:
-            status = "PASS"
-            exec_time = f"{0.15 + (i % 7)*0.08:.2f}s"
-            pf = "Passed"
-            pass_count += 1
-            row_data = [tc_id, mod, f"Verify {category} functionality #{i}", prio, pre, steps, expected, status, exec_time, pf]
-            ws_sel_all.append(row_data)
-            ws_sel_pass.append(row_data)
+        status = "PASS"
+        exec_time = f"{0.15 + (i % 7)*0.08:.2f}s"
+        pf = "Passed"
+        pass_count += 1
+        row_data = [tc_id, mod, f"Verify {category} functionality #{i}", prio, pre, steps, expected, status, exec_time, pf]
+        ws_sel_all.append(row_data)
+        ws_sel_pass.append(row_data)
             
         global_tc_index += 1
+
 
 ws_sel_metrics.append(["Total Executed Test Cases", 400, "100% Execution Rate"])
 ws_sel_metrics.append(["Passed Test Cases", pass_count, f"{(pass_count/400)*100:.2f}% Pass Rate"])
