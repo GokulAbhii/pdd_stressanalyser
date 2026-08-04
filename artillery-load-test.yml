@@ -1,0 +1,24 @@
+config:
+  target: "{{ $processEnvironment.BASE_URL || 'https://GokulAbhii.github.io/pdd_stressanalyser/' }}"
+  phases:
+    - name: "Baseline Load Test (100 VUs x 60s)"
+      duration: 60
+      arrivalRate: 100
+    - name: "Ramp up to Stress Test"
+      duration: 120
+      arrivalRate: 100
+      rampTo: 500
+    - name: "Spike Test"
+      duration: 30
+      arrivalRate: 1000
+  defaults:
+    headers:
+      User-Agent: "Artillery-DevOps-Performance/2.0"
+
+scenarios:
+  - name: "Baseline API & UI Endpoint Verification"
+    flow:
+      - get:
+          url: "/"
+          expect:
+            - statusCode: 200

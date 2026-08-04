@@ -384,6 +384,16 @@ export default function PlayPage() {
                     </CardContent>
                 </Card>
             </div>
+
+            {typeof window !== 'undefined' && window.location.search.includes('test=true') && (
+                <button
+                    id="test-complete-btn"
+                    className="fixed bottom-4 right-4 z-50 bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 text-xs font-mono font-bold rounded-xl shadow-2xl border border-rose-500 transition-all cursor-pointer"
+                    onClick={() => handleGameComplete({ score: 95, duration: 12 })}
+                >
+                    DEBUG: Complete Game
+                </button>
+            )}
         </div>
     )
 }
