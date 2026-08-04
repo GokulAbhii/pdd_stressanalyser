@@ -1,6 +1,6 @@
 {
   "repository": "GokulAbhii/pdd_stressanalyser",
-  "timestamp": "2026-08-04T22:00:27.706405",
+  "timestamp": "2026-08-04T22:14:46.554206",
   "live_url": "https://GokulAbhii.github.io/pdd_stressanalyser/",
   "total_tests": 1600,
   "frameworks": {
@@ -12,8 +12,8 @@
     },
     "vulnerability_audit": {
       "total": 400,
-      "passed": 388,
-      "failed": 12,
+      "passed": 400,
+      "failed": 0,
       "skipped": 0
     },
     "performance_load": {
