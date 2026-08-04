@@ -52,3 +52,7 @@ $RECYCLE.BIN/
 
 # Logs
 logs/
+
+# Portable Binaries
+node-portable/
+

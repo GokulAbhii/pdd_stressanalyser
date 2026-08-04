@@ -1,10 +1,12 @@
-name: Live GitHub Pages E2E Selenium Tests
+name: Selenium E2E Tests
 
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 permissions:
@@ -20,7 +22,7 @@ env:
   BASE_URL: https://GokulAbhii.github.io/pdd_stressanalyser/
 
 jobs:
-  build-deploy-and-test:
+  selenium-e2e-tests:
     runs-on: ubuntu-latest
     steps:
       # Stage 1: Repository Checkout
