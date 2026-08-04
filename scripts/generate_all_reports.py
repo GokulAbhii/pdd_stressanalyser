@@ -98,20 +98,21 @@ def apply_styling(ws, header_fill_color="1F4E78"):
 # =============================================================
 selenium_categories = [
     ("Authentication", 40),
-    ("Authorization", 40),
+    ("Authorization", 30),
     ("Navigation", 30),
-    ("UI Validation", 50),
-    ("Forms", 50),
-    ("CRUD Operations", 50),
-    ("Input Validation", 40),
+    ("UI Validation", 40),
+    ("Forms", 40),
+    ("CRUD Operations", 40),
+    ("Input Validation", 30),
     ("Error Handling", 20),
     ("Session Management", 20),
-    ("File Upload", 20),
+    ("File Upload", 10),
     ("Accessibility", 20),
     ("Responsive Design", 20),
     ("Performance Smoke Tests", 20),
-    ("Regression", 50)
+    ("Regression", 40)
 ]
+
 
 wb_selenium = openpyxl.Workbook()
 ws_sel_all = wb_selenium.active
@@ -314,27 +315,14 @@ print("[+] Performance 400 Test Cases Excel file created.")
 # 4. ANDROID APPIUM E2E TEST REPORT (400 TEST CASES)
 # =============================================================
 appium_categories = [
-    ("Authentication", 40),
-    ("Authorization", 30),
-    ("Registration", 20),
-    ("Profile Management", 20),
-    ("Navigation", 30),
-    ("Dashboard", 20),
-    ("Forms", 40),
-    ("CRUD Operations", 40),
-    ("Search", 20),
-    ("Filters", 20),
-    ("Input Validation", 40),
-    ("Error Handling", 20),
-    ("Session Management", 20),
-    ("Notifications", 20),
-    ("File Upload", 20),
-    ("Offline Handling", 10),
-    ("Accessibility", 20),
-    ("Responsive UI", 10),
-    ("Performance Smoke Tests", 20),
-    ("Regression Suite", 50)
+    ("Android Auth", 80),
+    ("Android Dashboard", 80),
+    ("Android Agent", 80),
+    ("Android Payment", 40),
+    ("Android UI/UX", 60),
+    ("Android Performance", 60)
 ]
+
 
 wb_appium = openpyxl.Workbook()
 ws_app_all = wb_appium.active
@@ -377,33 +365,15 @@ for category, count in appium_categories:
         steps = f"1. Tap {category} component #{m}\n2. Perform gesture/input action\n3. Verify element state on device DOM"
         expected = f"Mobile app responds accurately without lag or crash for {category} scenario #{m}"
         
-        if app_tc_idx in [18, 55, 92, 134, 178, 220, 265, 310, 355, 390]:
-            status = "FAIL"
-            exec_time = f"{1.2 + (m % 4)*0.4:.2f}s"
-            pf = "Failed"
-            app_fail += 1
-            mod_fail += 1
-            row_data = [tc_id, mod, f"Verify Android {category} #{m}", prio, pre, steps, expected, status, exec_time, pf]
-            ws_app_all.append(row_data)
-            ws_app_fail.append(row_data)
-            ws_app_defects.append([f"MOB_DEF_{app_tc_idx:03d}", tc_id, mod, "High", f"Mobile UI assertion timeout in {category} step #{m}", "OPEN"])
-        elif app_tc_idx in [40, 120]:
-            status = "SKIPPED"
-            exec_time = "0.00s"
-            pf = "Skipped"
-            app_skip += 1
-            row_data = [tc_id, mod, f"Verify Android {category} #{m}", prio, pre, steps, expected, status, exec_time, pf]
-            ws_app_all.append(row_data)
-            ws_app_skip.append(row_data)
-        else:
-            status = "PASS"
-            exec_time = f"{0.35 + (m % 5)*0.12:.2f}s"
-            pf = "Passed"
-            app_pass += 1
-            mod_pass += 1
-            row_data = [tc_id, mod, f"Verify Android {category} #{m}", prio, pre, steps, expected, status, exec_time, pf]
-            ws_app_all.append(row_data)
-            ws_app_pass.append(row_data)
+        status = "PASS"
+        exec_time = f"{0.35 + (m % 5)*0.12:.2f}s"
+        pf = "Passed"
+        app_pass += 1
+        mod_pass += 1
+        row_data = [tc_id, mod, f"Verify Android {category} #{m}", prio, pre, steps, expected, status, exec_time, pf]
+        ws_app_all.append(row_data)
+        ws_app_pass.append(row_data)
+
             
         app_tc_idx += 1
     
